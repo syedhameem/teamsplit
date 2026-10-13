@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Niche Split</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Righteous&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f5f9;--card:#fff;--tx:#0f172a;--mut:#64748b;--ac:#1e40af;--acx:#fff;--bd:#e2e8f0;--warn:#b45309;--pk:#db2777;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b1220;--card:#131c2e;--tx:#e8edf7;--mut:#94a3b8;--ac:#60a5fa;--acx:#0b1220;--bd:#243049;--warn:#fbbf24;--pk:#f472b6}}
+:root[data-theme="dark"]{--bg:#0b1220;--card:#131c2e;--tx:#e8edf7;--mut:#94a3b8;--ac:#60a5fa;--acx:#0b1220;--bd:#243049;--warn:#fbbf24;--pk:#f472b6}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.4}
+.top{background:var(--ac);color:var(--acx);padding:18px 16px}
+.top .in{max-width:960px;margin:0 auto}
+.brand{font-size:1.35rem;font-weight:700;letter-spacing:.04em}
+.tag{font-size:.82rem;opacity:.85;margin-top:2px}
+main{max-width:960px;margin:0 auto;padding:16px}
+h2.sec{font-size:.78rem;text-transform:uppercase;letter-spacing:.09em;color:var(--mut);margin:18px 2px 8px;font-weight:600}
+h2.sec small{text-transform:none;letter-spacing:0;font-weight:400;margin-left:6px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:14px;box-shadow:0 1px 2px rgba(15,23,42,.04)}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.col h3{font-size:.95rem;margin:0;display:flex;align-items:center;gap:8px}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--c);flex:none}
+.cnt{font-size:.76rem;color:var(--mut);margin:2px 0 10px}
+.grid{display:flex;flex-wrap:wrap;gap:6px;max-height:300px;overflow-y:auto}
+.num{width:54px;text-align:center;padding:7px 0;border-radius:8px;border:1px solid var(--bd);border-left:3px solid var(--c);font-variant-numeric:tabular-nums;font-size:.88rem;cursor:pointer;user-select:none;background:var(--bg)}
+.num.g{background:color-mix(in srgb,var(--pk) 15%,transparent);border-color:var(--pk);color:var(--pk);font-weight:700}
+.num.a{opacity:.3;text-decoration:line-through}
+.addr{display:flex;gap:6px;margin-top:10px}
+.addr input{min-width:0;padding:8px;font-size:.82rem}
+.addr button{padding:8px 12px;font-size:.82rem}
+.legend{font-size:.76rem;color:var(--mut);margin-top:8px}
+.legend b{color:var(--pk)}
+.arow{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.arow span{min-width:120px;font-size:.88rem;display:flex;align-items:center;gap:8px}
+input{width:100%;padding:10px;border:1px solid var(--bd);border-radius:10px;background:var(--bg);color:var(--tx);font:inherit}
+input:focus{outline:2px solid var(--ac);outline-offset:0}
+label{display:block;font-size:.82rem;color:var(--mut);margin-bottom:4px}
+.sug{margin-bottom:12px}
+.sug .chip{display:inline-block;padding:6px 12px;margin:4px 6px 0 0;border:1px solid var(--ac);color:var(--ac);border-radius:999px;font-size:.82rem;cursor:pointer}
+.ctrl{display:flex;gap:8px;flex-wrap:wrap;align-items:end}
+.ctrl>div{width:150px}
+button{background:var(--ac);color:var(--acx);border:0;border-radius:10px;padding:11px 20px;font:inherit;font-weight:600;cursor:pointer}
+button.alt{background:transparent;color:var(--ac);border:1px solid var(--ac)}
+.warn{color:var(--warn);font-size:.85rem;margin-top:10px}
+.res{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.team .hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.team h3{margin:0;font-size:1rem;color:var(--ac)}
+.badge{font-size:.74rem;color:var(--mut);border:1px solid var(--bd);border-radius:999px;padding:2px 9px}
+.dr{margin-bottom:8px}
+.dr .dl{font-size:.74rem;color:var(--mut);display:flex;align-items:center;gap:6px;margin-bottom:4px}
+.dr .grid{max-height:none}
+.num.r{cursor:default}
+body{font-family:Poppins,Inter,system-ui,-apple-system,"Segoe UI",sans-serif}
+.top{position:relative;overflow:hidden;background:linear-gradient(120deg,#1e3a8a,#4f46e5,#0ea5e9,#1e3a8a);background-size:300% 300%;animation:flow 10s ease infinite;color:#fff;padding:28px 16px}
+.top .in{position:relative}
+.bub{position:absolute;border-radius:50%;background:rgba(255,255,255,.14);animation:float 7s ease-in-out infinite}
+.b1{width:90px;height:90px;left:6%;top:-20px}.b2{width:60px;height:60px;right:14%;top:34px;animation-delay:-2s}.b3{width:130px;height:130px;right:-30px;bottom:-60px;animation-delay:-4s}
+.brandrow{display:flex;align-items:center;gap:12px}
+.logo{font-size:2rem;display:inline-block;animation:bounce 2.4s ease-in-out infinite}
+.brand{font-family:Righteous,Poppins,sans-serif;font-size:2.3rem;font-weight:400;letter-spacing:.03em;line-height:1.1;background:linear-gradient(90deg,#fff,#7dd3fc,#fff,#7dd3fc);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 4s linear infinite}
+.tag{opacity:.92;font-size:.88rem;margin-top:4px}
+main>*{animation:up .6s ease backwards}
+main>*:nth-child(2){animation-delay:.08s}main>*:nth-child(3){animation-delay:.16s}main>*:nth-child(4){animation-delay:.24s}main>*:nth-child(5){animation-delay:.32s}main>*:nth-child(6){animation-delay:.4s}main>*:nth-child(7){animation-delay:.48s}
+.cols.first .num{animation:pop .45s ease backwards}
+.cols.first .num:nth-child(3n){animation-delay:.1s}.cols.first .num:nth-child(3n+1){animation-delay:.2s}.cols.first .num:nth-child(3n+2){animation-delay:.3s}
+.card{transition:transform .25s ease,box-shadow .25s ease}
+.card:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(30,64,175,.16)}
+.num{transition:transform .15s ease,box-shadow .15s ease}
+.num:hover{transform:translateY(-2px) scale(1.1);box-shadow:0 4px 10px rgba(30,64,175,.2)}
+.team{animation:pop .55s ease backwards}
+button{transition:transform .15s ease,box-shadow .2s ease}
+button:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(30,64,175,.3)}
+button:active{transform:scale(.95)}
+#go{animation:pulse 2.2s ease-in-out infinite}
+.sug .chip{transition:background .2s,color .2s,transform .15s}
+.sug .chip:hover{background:var(--ac);color:var(--acx);transform:translateY(-2px)}
+.cf{position:fixed;top:-14px;width:8px;height:14px;border-radius:2px;z-index:99;pointer-events:none;animation:fall linear forwards}
+@keyframes flow{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+@keyframes shine{to{background-position:200% center}}
+@keyframes bounce{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-7px) rotate(-8deg)}}
+@keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes pop{0%{opacity:0;transform:scale(.6)}70%{transform:scale(1.06)}100%{opacity:1;transform:scale(1)}}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:.2}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(79,70,229,.55)}50%{box-shadow:0 0 0 10px rgba(79,70,229,0)}}
+.top{padding-bottom:46px}
+.top::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.2) 50%,transparent 65%);transform:translateX(-100%);animation:sweep 6s ease-in-out infinite;pointer-events:none}
+.toprow{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.live{display:flex;align-items:center;gap:8px;font-size:.78rem;font-weight:600;letter-spacing:.08em;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);padding:5px 12px;border-radius:999px;backdrop-filter:blur(4px)}
+.live #clk{font-variant-numeric:tabular-nums;opacity:.9;font-weight:500;letter-spacing:.02em}
+.ld{width:9px;height:9px;border-radius:50%;background:#4ade80;animation:ping 1.4s ease-out infinite}
+.tag{min-height:1.4em}
+.caret{display:inline-block;width:2px;height:1em;background:#fff;margin-left:2px;vertical-align:-2px;animation:blink 1s steps(1) infinite}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:16px;max-width:520px}
+.st{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:8px 6px;text-align:center;backdrop-filter:blur(4px)}
+.st b{display:block;font-size:1.35rem;line-height:1.1;font-variant-numeric:tabular-nums}
+.st b.bump{animation:bump .45s ease}
+.st span{font-size:.68rem;opacity:.85;text-transform:uppercase;letter-spacing:.06em}
+.wave{position:absolute;left:0;bottom:-1px;width:200%;height:28px;color:var(--bg);animation:wave 9s linear infinite}
+.b4{width:46px;height:46px;left:34%;bottom:34px;animation-delay:-1s;animation-duration:5s}.b5{width:30px;height:30px;left:62%;top:14px;animation-delay:-3s;animation-duration:6s}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(74,222,128,.7)}100%{box-shadow:0 0 0 10px rgba(74,222,128,0)}}
+@keyframes blink{50%{opacity:0}}
+@keyframes bump{0%{transform:scale(1)}40%{transform:scale(1.35);color:#fde68a}100%{transform:scale(1)}}
+@keyframes wave{to{transform:translateX(-50%)}}
+@keyframes sweep{0%,55%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+:root:root:root{color-scheme:dark;--bg:#0a1230;--card:#111c3f;--tx:#f1ecd9;--mut:#a9b0c9;--ac:#e5b94a;--acx:#1a1405;--bd:#27345f;--warn:#fbbf24;--pk:#f472b6}
+body{background:radial-gradient(900px 500px at 12% -5%,#18296a,transparent 60%),radial-gradient(700px 400px at 100% 30%,#2a2209,transparent 60%),var(--bg);background-attachment:fixed}
+.top{background:linear-gradient(120deg,#070d24,#15296b,#6e5413,#15296b,#070d24);background-size:300% 300%;border-bottom:1px solid rgba(229,185,74,.45)}
+.bub{background:rgba(229,185,74,.13)}
+.brand{background:linear-gradient(90deg,#f6e3a1,#e5b94a,#fff3c4,#e5b94a,#f6e3a1);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent}
+.top::after{background:linear-gradient(110deg,transparent 35%,rgba(255,226,140,.22) 50%,transparent 65%)}
+.caret{background:#e5b94a}
+.st{background:rgba(229,185,74,.1);border-color:rgba(229,185,74,.4)}
+.live{border-color:rgba(229,185,74,.5);background:rgba(229,185,74,.12)}
+h2.sec{color:#e5b94a}
+.card{box-shadow:0 2px 10px rgba(0,0,0,.35)}
+.card:hover{box-shadow:0 10px 28px rgba(229,185,74,.18);border-color:rgba(229,185,74,.5)}
+.num:hover{box-shadow:0 4px 12px rgba(229,185,74,.3)}
+button:hover{box-shadow:0 8px 20px rgba(229,185,74,.35)}
+button.alt{color:#e5b94a;border-color:#e5b94a}
+button.alt:hover{background:rgba(229,185,74,.12)}
+.sug .chip{border-color:#e5b94a;color:#e5b94a}
+.sug .chip:hover{background:#e5b94a;color:#1a1405}
+.badge{border-color:rgba(229,185,74,.45);color:#e5b94a}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(229,185,74,.6)}50%{box-shadow:0 0 0 11px rgba(229,185,74,0)}}
+@keyframes bump{0%{transform:scale(1)}40%{transform:scale(1.35);color:#f6e3a1}100%{transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.cf{display:none}}
+</style></head><body>
+<header class="top"><i class="bub b1"></i><i class="bub b2"></i><i class="bub b3"></i><i class="bub b4"></i><i class="bub b5"></i><div class="in"><div class="toprow"><div class="brandrow"><span class="logo">👥</span><span class="brand">Niche Split</span></div><div class="live"><span class="ld"></span>LIVE <span id="clk"></span></div></div><div class="tag"><span id="tw"></span><span class="caret"></span></div><div class="stats"><div class="st"><b id="sP">0</b><span>Present</span></div><div class="st"><b id="sG">0</b><span>Girls</span></div><div class="st"><b id="sA">0</b><span>Absent</span></div><div class="st"><b id="sT">0</b><span>Teams</span></div></div></div><svg class="wave" viewBox="0 0 2400 40" preserveAspectRatio="none"><path d="M0 20 Q150 0 300 20 T600 20 T900 20 T1200 20 T1500 20 T1800 20 T2100 20 T2400 20 V40 H0Z" fill="currentColor"/></svg></header>
+<main>
+<h2 class="sec">1. Class roster</h2>
+<div class="cols" id="cols"></div>
+<div class="legend"><b>Pink</b> = girl (each team gets one). Crossed out = absent.</div>
+
+<h2 class="sec">2. Absent numbers</h2>
+<div class="card"><div id="abs"></div></div>
+
+<h2 class="sec">3. Split</h2>
+<div class="card">
+<div id="sug" class="sug"></div>
+<div class="ctrl">
+<div><label for="n">How many teams</label><input id="n" type="number" min="1" value="4"></div>
+<button id="go">Split</button>
+<button class="alt" id="again" style="display:none">Split again</button>
+<button class="alt" id="copy" style="display:none">Copy</button>
+</div>
+<div id="warn" class="warn"></div>
+</div>
+
+<h2 class="sec" id="rh" style="display:none">Teams</h2>
+<div class="res" id="out"></div>
+</main>
+<script>
+var R={
+'MBA General':['MS501','MS502','MS503','MS504','MS505','MS506','MS507','MS508','MS509','MS510','MS511','MS512','MS513','MS514','MS515','MS516','MS517','MS518','MS519','MS520','MS521','MS522','MS523','MS524','MS525','MS526','MS527','MS528','MS529','MS531','MS532','MS533','MS534','MS535','MS536','MS537','MS539','MS540','MS541','MS542'],
+'MBA Aviation':['AV501','AV502','AV504','AV505','AV506','AV507'],
+'MBA Logistics':['LS501','LS502','LS503','LS504','LS505']};
+var C={'MBA General':'#60a5fa','MBA Aviation':'#2dd4bf','MBA Logistics':'#fb923c'};
+var D=Object.keys(R),G={},X={},last=[];
+var $=function(i){return document.getElementById(i)};
+try{G=JSON.parse(localStorage.getItem('ts_girls')||'{}')}catch(e){G={}}
+try{X=JSON.parse(localStorage.getItem('ts_extra')||'{}')}catch(e){X={}}
+D.forEach(function(d){(X[d]||[]).forEach(function(p){p=Array.isArray(p)?p[0]:p;if(R[d].indexOf(p)<0)R[d].push(p)})});
+var GIRLS={'MBA General':[6,7,9,10,15,17,30,32,37],'MBA Aviation':[2],'MBA Logistics':[4]};
+function gSet(i){var s={};(GIRLS[D[i]]||[]).forEach(function(x){s[x]=1});return s}
+function ser(d,r){return R[d].indexOf(r)+1}
+function esc(s){return String(s).replace(/[&<>"]/g,'')}
+function num(r){return parseInt(r.replace(/\D/g,''),10)}
+function lab(r){var n=num(r)%100;return (n<10?'0':'')+n}
+function absSet(i){var el=$('ab'+i),s={};if(!el)return s;(el.value.match(/\d+/g)||[]).forEach(function(x){s[parseInt(x,10)]=1});return s}
+function build(){
+  $('cols').innerHTML=D.map(function(d,i){return '<div class="card col" style="--c:'+C[d]+'"><h3><span class="dot"></span>'+d+'</h3><div class="cnt" id="c'+i+'"></div><div class="grid" id="l'+i+'"></div><div class="addr"><input id="ar'+i+'" inputmode="numeric" placeholder="Add roll no"><button class="alt" data-add="'+i+'">Add</button></div></div>'}).join('');
+  $('abs').innerHTML=D.map(function(d,i){return '<div class="arow" style="--c:'+C[d]+'"><span><i class="dot"></i>'+d+'</span><input id="ab'+i+'" inputmode="numeric" placeholder="e.g. 45,55"></div>'}).join('');
+  D.forEach(function(d,i){
+    $('ab'+i).oninput=function(){var el=$('ab'+i),v=el.value.replace(/[^\d,]/g,',').replace(/,{2,}/g,',').replace(/^,/,'');if(v!==el.value)el.value=v;paint()};
+    $('ar'+i).onkeydown=function(e){if(e.key==='Enter')addP(i)};});
+  paint();
+}
+function paint(){
+  var TP=0,TG=0;
+  D.forEach(function(d,i){
+    var a=absSet(i),gs=gSet(i),pres=0,g=0;
+    $('l'+i).innerHTML=R[d].length?R[d].map(function(r){
+      var ab=a[ser(d,r)],isg=gs[ser(d,r)];
+      if(!ab){pres++;if(isg)g++}
+      return '<div class="num'+(isg?' g':'')+(ab?' a':'')+'" style="--c:'+C[d]+'" data-r="'+esc(r)+'">'+esc(ser(d,r))+'</div>'}).join(''):'<div class="cnt">No students yet. Add roll numbers below.</div>';
+    $('c'+i).textContent=pres+' present, '+g+' girls';TP+=pres;TG+=g;
+  });
+  suggest(TP,TG);
+  stats(TP,TG);
+}
+function suggest(tp,tg){
+  var el=$('sug');if(!tp){el.innerHTML='';return}
+  var o={},warn=false;[3,4,5,6].forEach(function(sz){o[Math.max(1,Math.round(tp/sz))]=1});
+  var ks=Object.keys(o).map(Number).sort(function(a,b){return b-a});
+  var chips=ks.map(function(t){var lo=Math.floor(tp/t),hi=Math.ceil(tp/t),w=tg<t;if(w)warn=true;return '<span class="chip" data-t="'+t+'">'+t+' teams ('+(lo==hi?lo:lo+'-'+hi)+' each)'+(w?' \u26a0':'')+'</span>'}).join('');
+  el.innerHTML='<div class="cnt" style="margin:0">'+tp+' present, '+tg+' girls marked. Suggested team counts (tap to use):</div>'+chips+(warn?'<div class="cnt" style="margin-top:8px">\u26a0 More teams than girls marked, so some teams won\'t have a girl.</div>':'');
+}
+function addP(i){
+  var d=D[i],r=$('ar'+i).value.trim().toUpperCase();
+  if(!r||!/\d/.test(r))return;
+  if(R[d].some(function(p){return num(p)===num(r)}))return;
+  R[d].push(r);(X[d]=X[d]||[]).push(r);
+  try{localStorage.setItem('ts_extra',JSON.stringify(X))}catch(e){}
+  $('ar'+i).value='';paint();
+}
+$('cols').onclick=function(e){
+  var b=e.target.closest('[data-add]');if(b){addP(parseInt(b.dataset.add,10));return}
+  var t=e.target.closest('.num');if(!t)return;
+  
+};
+$('sug').onclick=function(e){var c=e.target.closest('[data-t]');if(c){$('n').value=c.dataset.t;stats()}};
+function shuf(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+function split(){
+  var girls=[],rest=[],w=[];
+  D.forEach(function(d,i){var a=absSet(i);
+    R[d].forEach(function(r){if(a[ser(d,r)])return;var x={r:r,d:d,g:!!gSet(i)[ser(d,r)]};(x.g?girls:rest).push(x)})});
+  var total=girls.length+rest.length,n=Math.max(1,Math.min(parseInt($('n').value)||1,total||1));
+  var o=$('out');o.innerHTML='';
+  if(!total){$('warn').textContent='No one is present.';return}
+  last=[];for(var k=0;k<n;k++)last.push([]);
+  shuf(girls);var extra=[];
+  girls.forEach(function(g,i){if(i<n)last[i].push(g);else extra.push(g)});
+  if(girls.length<n)w.push('Only '+girls.length+' girl(s) marked for '+n+' teams, so '+(n-girls.length)+' team(s) have none.');
+  if(extra.length)w.push(extra.length+' extra girl(s) added on top of one per team.');
+  var all=shuf(extra.concat(rest)),ptr=0;shuf(last);
+  all.sort(function(a,b){return D.indexOf(a.d)-D.indexOf(b.d)});
+  all.forEach(function(p){
+    var m=Math.min.apply(null,last.map(function(t){return t.length})),idx=0;
+    for(var s=0;s<n;s++){var c=(ptr+s)%n;if(last[c].length===m){idx=c;break}}
+    last[idx].push(p);ptr=(idx+1)%n});
+  $('warn').textContent=w.join(' ');
+  last.forEach(function(tm,i){
+    var h='';
+    D.forEach(function(d){
+      var m=tm.filter(function(x){return x.d===d}).sort(function(a,b){return num(a.r)-num(b.r)});
+      if(!m.length)return;
+      h+='<div class="dr" style="--c:'+C[d]+'"><div class="dl"><i class="dot"></i>'+d+'</div><div class="grid">'+m.map(function(x){return '<div class="num r'+(x.g?' g':'')+'" style="--c:'+C[d]+'">'+esc(ser(x.d,x.r))+'</div>'}).join('')+'</div></div>'});
+    var c=document.createElement('div');c.className='card team';c.style.animationDelay=(i*0.09)+'s';
+    c.innerHTML='<div class="hd"><h3>Team '+(i+1)+'</h3><span class="badge">'+tm.length+' students</span></div>'+h;
+    o.appendChild(c)});
+  $('rh').style.display='';$('again').style.display='';$('copy').style.display='';
+  confetti();try{$('rh').scrollIntoView({behavior:'smooth',block:'start'})}catch(e){}
+}
+$('go').onclick=split;$('again').onclick=split;
+$('copy').onclick=function(){
+  var t=last.map(function(tm,i){
+    return 'Team '+(i+1)+'\n'+D.map(function(d){var m=tm.filter(function(x){return x.d===d}).sort(function(a,b){return num(a.r)-num(b.r)});
+      return m.length?'  '+d+': '+m.map(function(x){return ser(x.d,x.r)+(x.g?'(F)':'')}).join(', '):''}).filter(Boolean).join('\n')}).join('\n\n');
+  try{navigator.clipboard.writeText(t);$('copy').textContent='Copied!'}catch(e){$('copy').textContent='Copy failed'}
+  setTimeout(function(){$('copy').textContent='Copy'},1500)};
+var ST={p:0,g:0},SV={};
+function setStat(id,v){var el=$(id),from=SV[id]||0;SV[id]=v;if(from===v)return;
+  var t0=performance.now();el.classList.remove('bump');void el.offsetWidth;el.classList.add('bump');
+  (function step(t){var k=Math.min(1,(t-t0)/450);el.textContent=Math.round(from+(v-from)*k);if(k<1)requestAnimationFrame(step)})(t0)}
+function stats(p,g){if(p!==undefined){ST.p=p;ST.g=g}
+  var tot=0;D.forEach(function(d){tot+=R[d].length});
+  var n=Math.max(1,Math.min(parseInt($('n').value)||1,ST.p||1));
+  setStat('sP',ST.p);setStat('sG',ST.g);setStat('sA',tot-ST.p);setStat('sT',ST.p?n:0)}
+var TW=['Fair, fast & fun team generator','One girl in every team','Every department mixed together','Real-time splitting for your class'],twi=0,twc=0,twd=false;
+(function tick(){var el=$('tw'),s=TW[twi];
+  if(!twd){twc++;el.textContent=s.slice(0,twc);if(twc===s.length){twd=true;return setTimeout(tick,1800)}}
+  else{twc--;el.textContent=s.slice(0,twc);if(twc===0){twd=false;twi=(twi+1)%TW.length}}
+  setTimeout(tick,twd?30:55)})();
+function clock(){$('clk').textContent=new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit',second:'2-digit'})}
+clock();setInterval(clock,1000);
+function confetti(){var cl=['#e5b94a','#f6e3a1','#fff3c4','#c9972b','#f472b6','#60a5fa'];
+  for(var i=0;i<46;i++){var s=document.createElement('i');s.className='cf';
+    s.style.cssText='left:'+(Math.random()*100)+'vw;background:'+cl[i%6]+';animation-duration:'+(1.6+Math.random()*1.6)+'s;animation-delay:'+(Math.random()*.4)+'s';
+    document.body.appendChild(s);(function(el){setTimeout(function(){el.remove()},3800)})(s)}}
+build();
+$('n').addEventListener('input',function(){stats()});
+$('cols').classList.add('first');setTimeout(function(){$('cols').classList.remove('first')},1600);
+</script></body></html>
